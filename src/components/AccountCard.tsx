@@ -9,6 +9,16 @@ interface AccountCardProps {
 }
 
 const AccountCard: React.FC<AccountCardProps> = ({ balance, totalIncome, totalExpenses }) => {
+  const handleIncomeClick = () => {
+    console.log('Income section clicked');
+    // Add your income-related functionality here
+  };
+
+  const handleExpensesClick = () => {
+    console.log('Expenses section clicked');
+    // Add your expenses-related functionality here
+  };
+
   return (
     <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-6 text-white shadow-xl">
       <div className="flex items-center justify-between mb-4">
@@ -27,25 +37,31 @@ const AccountCard: React.FC<AccountCardProps> = ({ balance, totalIncome, totalEx
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+        <button
+          onClick={handleIncomeClick}
+          className="bg-white/10 rounded-xl p-3 backdrop-blur-sm hover:bg-white/20 transition-all duration-200 hover:scale-105 cursor-pointer group"
+        >
           <div className="flex items-center space-x-2 mb-1">
-            <TrendingUp className="w-4 h-4 text-green-300" />
+            <TrendingUp className="w-4 h-4 text-green-300 group-hover:scale-110 transition-transform" />
             <span className="text-xs text-blue-100 font-medium">Income</span>
           </div>
           <p className="text-lg font-semibold text-green-300">
             +${totalIncome.toLocaleString('en-US', { minimumFractionDigits: 2 })}
           </p>
-        </div>
+        </button>
         
-        <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+        <button
+          onClick={handleExpensesClick}
+          className="bg-white/10 rounded-xl p-3 backdrop-blur-sm hover:bg-white/20 transition-all duration-200 hover:scale-105 cursor-pointer group"
+        >
           <div className="flex items-center space-x-2 mb-1">
-            <TrendingDown className="w-4 h-4 text-red-300" />
+            <TrendingDown className="w-4 h-4 text-red-300 group-hover:scale-110 transition-transform" />
             <span className="text-xs text-blue-100 font-medium">Expenses</span>
           </div>
           <p className="text-lg font-semibold text-red-300">
             -${totalExpenses.toLocaleString('en-US', { minimumFractionDigits: 2 })}
           </p>
-        </div>
+        </button>
       </div>
     </div>
   );
