@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Card, CardContent } from '../components/ui/card';
 import AccountCard from '../components/AccountCard';
 import QuickAddTransaction from '../components/QuickAddTransaction';
 import TransactionList from '../components/TransactionList';
@@ -71,28 +72,33 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4">
-      <div className="max-w-md mx-auto space-y-6">
+      <div className="max-w-md mx-auto">
         {/* Header */}
-        <div className="text-center pt-4 pb-2">
+        <div className="text-center pt-4 pb-6">
           <h1 className="text-2xl font-bold text-slate-800 mb-1">Finance Tracker</h1>
           <p className="text-slate-600 text-sm">Manage your money wisely</p>
         </div>
 
-        {/* Account Balance Card */}
-        <AccountCard 
-          balance={balance}
-          totalIncome={totalIncome}
-          totalExpenses={totalExpenses}
-        />
+        {/* Main Card Container */}
+        <Card className="bg-white/80 backdrop-blur-sm shadow-xl border-0">
+          <CardContent className="p-6 space-y-6">
+            {/* Account Balance Card */}
+            <AccountCard 
+              balance={balance}
+              totalIncome={totalIncome}
+              totalExpenses={totalExpenses}
+            />
 
-        {/* Quick Add Transaction */}
-        <QuickAddTransaction onAddTransaction={addTransaction} />
+            {/* Quick Add Transaction */}
+            <QuickAddTransaction onAddTransaction={addTransaction} />
 
-        {/* Budget Overview */}
-        <BudgetOverview categories={categories} />
+            {/* Budget Overview */}
+            <BudgetOverview categories={categories} />
 
-        {/* Recent Transactions */}
-        <TransactionList transactions={transactions} />
+            {/* Recent Transactions */}
+            <TransactionList transactions={transactions} />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
